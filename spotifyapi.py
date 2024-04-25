@@ -26,6 +26,3 @@ for i in playlists["items"] :
     if i["name"] == name :
         playlist_id = i["id"]
 print(spotify.playlist(playlist_id))
-
-
-# comment
