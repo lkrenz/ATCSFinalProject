@@ -25,4 +25,16 @@ playlist_id = 0
 for i in playlists["items"] : 
     if i["name"] == name :
         playlist_id = i["id"]
-print(spotify.playlist(playlist_id))
+playlist_data = spotify.playlist(playlist_id)
+
+# Track["name"] Gets the name of the track
+
+playlist = []
+for i in playlist_data["tracks"]["items"] : 
+    playlist.append(spotify.audio_features(i["track"]["id"]))
+
+print(playlist[1])
+
+
+
+
