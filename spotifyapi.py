@@ -33,7 +33,20 @@ playlist = []
 for i in playlist_data["tracks"]["items"] : 
     playlist.append(spotify.audio_features(i["track"]["id"]))
 
-print(playlist[1])
+
+collumns = ["danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", "liveness", "valence", "tempo", "type", "id", "uri", "track_href", "analysis_url", "duration_ms", "time_signature"]
+selected_columns = ["danceability", "energy", "loudness", "speechiness", "acousticness", "instrumentalness", "liveness", "valence", "tempo"]
+
+df = pd.DataFrame(playlist, columns=collumns)
+df = df[selected_columns]
+df["name"] = names
+
+scaler = MinMaxScaler()
+scaler = scaler.fit(df[["tempo"]])
+
+df["tempo"] = pd.DataFrame(scaler.transform(df[["tempo"]]))
+df
+
 
 
 
